@@ -1,29 +1,20 @@
-# teste
+https://stackedit.io/app#
 
-## Project setup
-```
-yarn install
-```
+# Desafio Grupo Citar
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Olá, para executar o projeto basta clonar o repositório, entrar no diretório clonado e instalar as dependências do node.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+# Instalação
 
-### Run your tests
-```
-yarn run test
-```
+    git clone https://github.com/OsmarFilho/desafio_front_end_grupo_citar.git
+    cd desafio_front_end_grupo_citar
+    npm install
+    npm run serve
 
-### Lints and fixes files
-```
-yarn run lint
-```
+# Configuração de Acesso
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Para interagir com repositórios é necessário autenticar as requisições, então, insira o nome de usuário e senha do GitHub no arquivo .env do projeto antes de executa-lo.
+
+# Modo de Uso
+
+Para listar as issues é necessário informar um nome de usuário(owner) e um repositório na tela inicial do projeto.

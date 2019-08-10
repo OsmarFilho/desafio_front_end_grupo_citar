@@ -1,5 +1,5 @@
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -36,13 +36,14 @@ export default {
 
     handleForm () {
       if (!this.locked) {
-        this.createComment(this.issueId, this.comentary)
+        this.createComment({ issueNumber: this.issueId, body: this.comentary })
           .then(res => {
             this.error = ''
             this.comentary.body = ''
           })
           .catch(error => {
             this.error = 'Por favor, escreva seu comentario!'
+            console.log(error)
           })
       } else {
         this.error = 'Issue Trancada!'
@@ -55,7 +56,7 @@ export default {
       return this.issues.length > 0
     },
     openedIssue () {
-      return this.hasList ? this.issues.find(issue => issue === this.issueId) : this.issue || {}
+      return (this.hasList ? this.issues.find(issue => issue === this.issueId) : this.issue) || {}
     },
     issueId () {
       return this.$route.params.id
@@ -71,24 +72,24 @@ export default {
 </script>
   <template>
 
-    <form class="col-6  mx-auto" @submit.prevent="handleForm()">
+    <form class="col-6  mx-auto" @submit.prevent="handleForm">
       <div class="card mt-3">
       <div class="card-header font-weight-bold bg-info">
-        {{ openedIssue.title }}
+        {{ (openedIssue || {}).title }}
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          <p>{{ (openedIssue || {}).user.login }}</p>
+          <p>{{ ((openedIssue || {}).user || {}).login }}</p>
         </blockquote>
       </div>
     </div>
     <div class="card mt-3" v-for="(comentary, i) in comments" :key="i">
       <div class="card-header font-weight-bold">
-        {{(comentary.user || {}).login}}
+        {{((openedIssue || {}).user || {}).login}}
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          {{comentary.body}}
+          {{(comentary || {}).body}}
         </blockquote>
       </div>
     </div>

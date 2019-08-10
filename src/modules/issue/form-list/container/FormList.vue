@@ -1,6 +1,6 @@
 <script>
-import Form from "../components/Form"
-import List from "../components/List"
+import Form from '../components/Form'
+import List from '../components/List'
 export default {
   components: { Form, List }
 }

@@ -42,11 +42,11 @@ export default {
       })
   },
 
-  createComment ({ dispatch }, issueNumber, body) {
-    axios.post(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/comments`, { body, auth })
+  createComment ({ dispatch }, params) {
+    let { issueNumber, body } = params
+    axios.post(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/comments`, body, { auth })
       .then(res => {
-        console.log('aqui', auth)
-        dispatch('fetchComments')
+        dispatch('fetchComments', issueNumber)
       })
   },
 

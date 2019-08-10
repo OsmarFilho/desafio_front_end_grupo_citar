@@ -1,7 +1,7 @@
 <script>
-  import {mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
-  data() {
+  data () {
     return {
       alert: {
         error: null,
@@ -19,7 +19,7 @@ export default {
     ...mapActions({
       createIssue: 'issue/createIssue'
     }),
-    save() {
+    save () {
       this.createIssue(this.issue)
         .then(res => {
           this.issue = {
@@ -36,14 +36,14 @@ export default {
         .catch(error => {
           this.alert.error = true
           this.alert.message = 'Por favor, preencha os campos!'
+          console.log(error)
         })
         .then(res => {
           this.alert.error = null
         })
     }
-  },
-
-};
+  }
+}
 </script>
 <template>
   <form class="col-6 mx-auto" @submit.prevent="save">

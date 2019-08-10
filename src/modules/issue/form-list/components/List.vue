@@ -2,15 +2,15 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   methods: {
-    ...mapActions({fetchIssues: 'issue/fetchIssues'})
+    ...mapActions({ fetchIssues: 'issue/fetchIssues' })
   },
   computed: {
-    ...mapGetters({issues: 'issue/issues'})
+    ...mapGetters({ issues: 'issue/issues' })
   },
-  mounted() {
+  mounted () {
     this.fetchIssues()
   }
-};
+}
 </script>
 <template>
 

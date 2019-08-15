@@ -6,7 +6,6 @@ export default {
       comentary: {
         body: ''
       },
-      locked: null,
       status: '',
       error: ''
     }
@@ -16,26 +15,21 @@ export default {
       fetchItem: 'issue/fetchItem',
       fetchComments: 'issue/fetchComments',
       createComment: 'issue/createComment',
-      editStateIssue: 'issue/editStateIssue'
+      lockIssue: 'issue/lockIssue',
+      unlockIssue: 'issue/unlockIssue'
     }),
     issueStatus () {
-      if (!this.locked) {
-        this.status = 'closed'
-        this.locked = true
-        this.editStateIssue(this.issueId, {
-          status: this.status
-        })
+      if (!this.openedIssue.locked) {
+        console.log('lock', this.issueId)
+        return this.lockIssue(this.issueId)
       } else {
-        this.status = 'open'
-        this.locked = false
-        this.editStateIssue(this.issueId, {
-          status: this.status
-        })
+        console.log('unlock', this.issueId)
+        return this.unlockIssue(this.issueId)
       }
     },
 
     handleForm () {
-      if (!this.locked) {
+      if (!this.openedIssue.locked) {
         this.createComment({ issueNumber: this.issueId, body: this.comentary })
           .then(res => {
             this.error = ''
@@ -69,6 +63,7 @@ export default {
     this.fetchComments(this.issueId)
   }
 }
+
 </script>
   <template>
 
@@ -105,7 +100,7 @@ export default {
 
     <div class="d-flex justify-content-end  mt-3">
       <div class="btn bg-light mr-2">
-        <a @click="issueStatus()">{{!this.locked ? 'Close' : 'Reopen'}} issue</a>
+        <a @click="issueStatus()">{{!this.openedIssue.locked ? 'Close' : 'Reopen'}} issue</a>
       </div>
       <button class="btn btn-primary" type="submit">Comentar</button>
     </div>

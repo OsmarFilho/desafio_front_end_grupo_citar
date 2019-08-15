@@ -50,11 +50,16 @@ export default {
       })
   },
 
-  editStateIssue ({ commit }, issueNumber, state) {
-    axios.post(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`, state, { auth })
-      .then(res => res.data)
-      .then(res => {
-        commit('ISSUE/FETCH_COMMENTS', res)
-      })
+  lockIssue ({ commit }, issueNumber) {
+    console.log(issueNumber)
+    axios.put(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/lock`, {
+      'locked': true,
+      'active_lock_reason': 'too heated'
+    }, { auth })
+  },
+
+  unlockIssue ({ commit }, issueNumber) {
+    console.log(issueNumber)
+    axios.delete(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/lock`, { auth })
   }
 }

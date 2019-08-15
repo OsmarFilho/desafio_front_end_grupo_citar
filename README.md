@@ -13,3 +13,6 @@ Olá, para executar o projeto basta clonar o repositório, entrar no diretório 
 
 Para interagir com repositórios é necessário autenticar as requisições, então, insira o nome de usuário e senha do GitHub, e tambem usuário(owner) e um repositorio(repo) no arquivo .env do projeto antes de executa-lo.
 
+# Configuração para testes
+
+Para rodar os testes basta preencher as variavelis locais (username, password, owner, repo, id, issue, body), que estão descritas no testeIssue.js, e apos o preenchimento das mesmas, rodar o comando "npm test".

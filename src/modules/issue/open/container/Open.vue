@@ -20,10 +20,8 @@ export default {
     }),
     issueStatus () {
       if (!this.openedIssue.locked) {
-        console.log('lock', this.issueId)
         return this.lockIssue(this.issueId)
       } else {
-        console.log('unlock', this.issueId)
         return this.unlockIssue(this.issueId)
       }
     },
